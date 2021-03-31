@@ -1,16 +1,23 @@
-import React, {Component, useState} from "react";
-import '../styles/App.css';
-
 class App extends Component {
-    render() {
-
-        return(
-            <>
-               
-            </>
-        )
-    }
+  constructor(props) {
+    super(props);
+    this.state = { date: new Date() };
+  }
+  componentDidMount() {
+    this.timer = setInterval(() => this.setState({ date: new Date() }), 1000);
+  }
+  componentWillUnmount() {
+    clearInterval(this.timer);
+  }
+  render() {
+    return (
+      <>
+        <div class="Clock">
+          <h3 id="time">{this.state.date.toLocaleTimeString()}</h3>
+        </div>
+      </>
+    );
+  }
 }
-
 
 export default App;
